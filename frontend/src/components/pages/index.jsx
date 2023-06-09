@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CreateTask from "./create";
+import DeleteTodo from "./delete";
+import Update from "./update";
 
 const Index = () => {
   const [tasks, setTasks] = useState([]);
@@ -25,10 +27,15 @@ const Index = () => {
       <div className="flex m-auto">
         <CreateTask />
       </div>
-      <ul>
+      <ul className="w-2/3 m-auto">
         {tasks.map((task) => (
-          <div key={task.id}>
-            <li>{task.title}</li>
+          <div
+            key={task.id}
+            className="flex justify-center border-zinc-800 border-2"
+          >
+            <li className="m-2 p-2">{task.title}</li>
+            <Update taskTitle={task} />
+            <DeleteTodo taskId={task.id} />
           </div>
         ))}
       </ul>
