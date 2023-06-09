@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CreateTask from "./create";
 
 const Index = () => {
   const [tasks, setTasks] = useState([]);
@@ -22,12 +23,7 @@ const Index = () => {
         <h1>TODO</h1>
       </div>
       <div className="flex m-auto">
-        <input
-          className="w-60 border-zinc-800 border-2"
-          type="text"
-          placeholder="新しいTODO"
-        />
-        <button className="bg-blue-400 w-40 h-10">追加する</button>
+        <CreateTask />
       </div>
       <ul>
         {tasks.map((task) => (
