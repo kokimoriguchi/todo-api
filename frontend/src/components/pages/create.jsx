@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { HandleClickAdd } from "../hooks/handleClickAdd";
 
-const CreateTask = () => {
+//propsとしてtriggerUpdateを受け取りクリックされたときにその関数を引き渡せるようにしている。
+const CreateTask = ({ triggerUpdate }) => {
   const [newTask, setNewTask] = useState("");
 
   //非同期関数はクリックイベントで直接参照できないので、関数で包み隠して呼び出す。
   const handleClickAddWrapper = () => {
-    HandleClickAdd(newTask);
+    HandleClickAdd(newTask, triggerUpdate);
   };
 
   return (

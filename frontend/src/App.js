@@ -1,10 +1,16 @@
-import Index from "./components/pages";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/pages/login";
+import Index from "./components/pages/index";
 
 function App() {
   return (
-    <div className=" text-center text-2xl">
-      <Index />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/index" element={<Index />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

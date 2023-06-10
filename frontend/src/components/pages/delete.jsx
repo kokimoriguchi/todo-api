@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const DeleteTodo = ({ taskId }) => {
+const DeleteTodo = ({ taskId, triggerUpdate }) => {
   const handleClickDelete = async () => {
     try {
       await axios.delete(`http://localhost:3001/api/v1/tasks/${taskId}`);
       console.log("clear delete");
+      triggerUpdate();
     } catch (error) {
       console.log("error", error);
     }
