@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CreateTask from "./create";
 import DeleteTodo from "./delete";
@@ -6,6 +7,8 @@ import Update from "./update";
 
 const Index = () => {
   const [tasks, setTasks] = useState([]);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -17,7 +20,11 @@ const Index = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [updateTrigger]);
+
+  const handleClickBack = () => {
+    navigate("/");
+  };
 
   return (
     <div className="flex flex-col">
@@ -25,7 +32,7 @@ const Index = () => {
         <h1>TODO</h1>
       </div>
       <div className="flex m-auto">
-        <CreateTask />
+        <CreateTask triggerUpdate={() => setUpdateTrigger(!updateTrigger)} />
       </div>
       <ul className="w-2/3 m-auto">
         {tasks.map((task) => (
@@ -34,11 +41,18 @@ const Index = () => {
             className="flex justify-center border-zinc-800 border-2"
           >
             <li className="m-2 p-2">{task.title}</li>
-            <Update taskTitle={task} />
-            <DeleteTodo taskId={task.id} />
+            <Update
+              taskTitle={task}
+              triggerUpdate={() => setUpdateTrigger(!updateTrigger)}
+            />
+            <DeleteTodo
+              taskId={task.id}
+              triggerUpdate={() => setUpdateTrigger(!updateTrigger)} //trigger関数としてuseState関数を反転するものを渡している。
+            />
           </div>
         ))}
       </ul>
+      <button onClick={handleClickBack}>back</button>
     </div>
   );
 };

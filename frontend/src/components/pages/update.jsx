@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const Update = ({ taskTitle }) => {
+const Update = ({ taskTitle, triggerUpdate }) => {
   const [edit, setEdit] = useState(false);
   const [updateTask, setUpdateTask] = useState(taskTitle.title);
 
@@ -16,19 +16,21 @@ const Update = ({ taskTitle }) => {
         task: { title: updateTask },
       });
       console.log("clear update");
+      triggerUpdate();
     } catch (error) {
       console.log("error", error);
     }
   };
 
   return (
-    <div>
+    <div className="">
       {edit ? (
         <>
           <input
             type="text"
             value={updateTask}
             onChange={(e) => setUpdateTask(e.target.value)}
+            className="border-zinc-800 border-2 m-2 p-2 rounded-2xl text-sm"
           />
           <button onClick={handleClickUpdate}>Save</button>
         </>
