@@ -32,7 +32,12 @@ const Update = ({ taskTitle, triggerUpdate }) => {
             onChange={(e) => setUpdateTask(e.target.value)}
             className="border-zinc-800 border-2 m-2 p-2 rounded-2xl text-sm"
           />
-          <button onClick={handleClickUpdate}>Save</button>
+          <button
+            className="border-zinc-800 border-2 m-2 p-2 rounded-2xl text-sm w-16 hover:bg-gray-200"
+            onClick={handleClickUpdate}
+          >
+            Save
+          </button>
         </>
       ) : (
         <button
