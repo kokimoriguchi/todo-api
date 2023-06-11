@@ -1,29 +1,29 @@
 import { useState } from "react";
-import { HandleLogin } from "../hooks/handleLogin";
+import { HandleAddUser } from "../hooks/handleAddUser";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [loginName, setLoginName] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+const NewUser = () => {
+  const [passName, setPassName] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const LoginUser = () => {
-    HandleLogin(loginName, loginPassword);
+  const SendNewUser = () => {
+    HandleAddUser(passName, password);
   };
 
-  const MoveCreateUser = () => {
-    navigate("addUser");
+  const backLoginPage = () => {
+    navigate("/");
   };
 
   return (
     <div className="flex flex-col items-center justify-center pt-40">
-      <h1>LOGIN</h1>
+      <h1>CREATE USER</h1>
       <div>
         <input
           className="w-60 border-zinc-800 border-2"
           type="text"
           placeholder="name"
-          onChange={(e) => setLoginName(e.target.value)}
+          onChange={(e) => setPassName(e.target.value)}
         />
       </div>
       <div>
@@ -31,21 +31,22 @@ const Login = () => {
           className="w-60 border-zinc-800 border-2"
           type="text"
           placeholder="password"
-          onChange={(e) => setLoginPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button className="w-60 border-zinc-800 border-2" onClick={LoginUser}>
-        Login
-      </button>
       <button
         className="w-60 border-zinc-800 border-2"
         onClick={() => {
-          MoveCreateUser();
+          SendNewUser(passName, password);
         }}
       >
-        CreateUser
+        send
+      </button>
+      <button className="w-60 border-zinc-800 border-2" onClick={backLoginPage}>
+        back
       </button>
     </div>
   );
 };
-export default Login;
+
+export default NewUser;

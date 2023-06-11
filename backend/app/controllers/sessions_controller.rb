@@ -25,7 +25,8 @@ class SessionsController < ApplicationController
       # JWTをCookieにセット
       cookies[:token] = token
 
-      render json: { user: { name: user.name, email: user.email, token: cookies } }, status: :created
+      puts token
+      render json: { user: { name: user.name, token: cookies }, message: "User created successfully" }, status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end

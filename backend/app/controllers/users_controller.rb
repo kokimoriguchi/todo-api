@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
 
-  def index
-    users = User.all
-  end
-
   def show
     # CookieからJWTを取得
     token = cookies[:token]
@@ -30,7 +26,6 @@ class UsersController < ApplicationController
         user: {
           id: user.id,
           name: user.name,
-          emai: user.email
         }
       }, status: :ok
     end
