@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { HandleLogin } from "../hooks/handleLogin";
+// import { useState } from "react";
+// import { HandleLogin } from "../hooks/handleLogin";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [loginName, setLoginName] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  // const [loginName, setLoginName] = useState("");
+  // const [loginPassword, setLoginPassword] = useState("");
   const navigate = useNavigate();
 
   const LoginUser = () => {
-    HandleLogin(loginName, loginPassword);
+    navigate("index");
   };
 
   const MoveCreateUser = () => {
@@ -23,7 +23,7 @@ const Login = () => {
           className="w-60 border-zinc-800 border-2"
           type="text"
           placeholder="name"
-          onChange={(e) => setLoginName(e.target.value)}
+          // onChange={(e) => setLoginName(e.target.value)}
         />
       </div>
       <div>
@@ -31,7 +31,7 @@ const Login = () => {
           className="w-60 border-zinc-800 border-2"
           type="text"
           placeholder="password"
-          onChange={(e) => setLoginPassword(e.target.value)}
+          // onChange={(e) => setLoginPassword(e.target.value)}
         />
       </div>
       <button className="w-60 border-zinc-800 border-2" onClick={LoginUser}>

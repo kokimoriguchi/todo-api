@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     end
   end
   post "/sign_in", to: "sessions#create"
-  resource :users
+  resource :users, only: [:show]
 end

@@ -23,9 +23,13 @@ class SessionsController < ApplicationController
       token = JWT.encode(payload, rsa_private, "RS256")
 
       # JWTをCookieにセット
-      cookies[:token] = token
+      cookies[:token] = {
+        value: token,
+        same_site: :none  # same_site 属性を none に設定します。
+      }
 
-      puts token
+      # puts token
+      puts cookies[:token]
       render json: { user: { name: user.name, token: cookies }, message: "User created successfully" }, status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
